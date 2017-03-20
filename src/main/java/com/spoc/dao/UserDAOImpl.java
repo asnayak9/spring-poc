@@ -42,8 +42,9 @@ public class UserDAOImpl implements UserDAO {
 		int out = jdbcTemplate.update(query, args);
 		if(out !=0){
 			System.out.println("Data Saved Successfully");
+			LOG.info("Data Saved Successfully....");
 		}else 
-			System.out.println("Data NOT Saved ");
+			LOG.info("Data not saved ....");
 	}
 
 	
