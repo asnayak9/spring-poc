@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONObject;
 
 import com.spoc.dto.EmployeeDto; 
+import com.spoc.dto.TableDetailsDto;
 
 public interface TableService {
 
@@ -14,6 +15,6 @@ public interface TableService {
 
 	int getTotalRecordCount();
 
-	JSONObject getEmployeeDetails(int totalRecords, HttpServletRequest request);
+	TableDetailsDto getEmployeeDetails(int totalRecords, TableDetailsDto tableData);
 		
 }

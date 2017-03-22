@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spoc.dao.TableDao;
 import com.spoc.dto.EmployeeDto;
+import com.spoc.dto.TableDetailsDto;
 
 @Service
 public class TableServiceImpl implements TableService{
@@ -25,10 +26,8 @@ public class TableServiceImpl implements TableService{
 		return tableDao.getTotalRecordCount();
 	}
 	@Override
-	public JSONObject getEmployeeDetails(int totalRecords,
-			HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+	public TableDetailsDto getEmployeeDetails(int totalRecords,TableDetailsDto tableData) {
+		return tableDao.getEmployeeDetails(totalRecords,tableData);
 	}
 	
 

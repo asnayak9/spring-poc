@@ -12,19 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spoc.dto.TableDetailsDto;
 import com.spoc.service.TableService;
 
 
 @Controller
 public class TableController {
 
-	private String GLOBAL_SEARCH_TERM;
-	private String COLUMN_NAME;
-	private String DIRECTION;
-	private int INITIAL;
-	private int RECORD_SIZE;
-	private String ID_SEARCH_TERM,NAME_SEARCH_TERM,PLACE_SEARCH_TERM,CITY_SEARCH_TERM,STATE_SEARCH_TERM,PHONE_SEARCH_TERM;
+	
 	
 	@Autowired
 	public TableService tableService; 
@@ -39,11 +36,11 @@ public class TableController {
 	
 	
 	@RequestMapping(value="/getDynamicTableData", method=RequestMethod.POST)
-	public String getDataTable(HttpServletRequest request, HttpServletResponse response, Model model){
+	@ResponseBody
+	public TableDetailsDto getDataTable(HttpServletRequest request, HttpServletResponse response, Model model){
 		System.out.println(" Get Data Table POST Controller ");
 		String[] columnNames = { "recId", "empId", "empName", "Salary" };
-
-		JSONObject jsonResult = new JSONObject();
+		TableDetailsDto tableData = new TableDetailsDto();
 		int listDisplayAmount = 10;
 		int start = 0;
 		int column = 0;
@@ -83,30 +80,17 @@ public class TableController {
 			e1.printStackTrace();
 		}
 
-		RECORD_SIZE = listDisplayAmount;
-		GLOBAL_SEARCH_TERM = request.getParameter("sSearch");
-		ID_SEARCH_TERM=request.getParameter("sSearch_0");
-		NAME_SEARCH_TERM=request.getParameter("sSearch_1");
-		PLACE_SEARCH_TERM=request.getParameter("sSearch_2");
-		CITY_SEARCH_TERM=request.getParameter("sSearch_3");
-		STATE_SEARCH_TERM=request.getParameter("sSearch_4");
-		PHONE_SEARCH_TERM=request.getParameter("sSearch_5");
-		COLUMN_NAME = colName;
-		DIRECTION = dir;
-		INITIAL = start;
-
-		/*try {
-			jsonResult = tableService.getEmployeeDetails(totalRecords, request);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		response.setContentType("application/json");
-		response.setHeader("Cache-Control", "no-store");
-		PrintWriter out = response.getWriter();
-		out.print(jsonResult);*/
-		return "home-page";
+		tableData.setRecordSize(listDisplayAmount);
+		tableData.setGlobalSearch(request.getParameter("sSearch"));
+		tableData.setRecIdSearch(request.getParameter("sSearch_0"));
+		tableData.setEmpIdSearch(request.getParameter("sSearch_1"));
+		tableData.setEmpNameSearch(request.getParameter("sSearch_2"));
+		tableData.setEmpSalarySearch(request.getParameter("sSearch_3"));
+		
+		tableData.setColumnName(colName);
+		tableData.setDirection(dir);
+		tableData.setInitial(start);
+		tableData = tableService.getEmployeeDetails(totalRecords,tableData);
+		return tableData;
 	}
 }
