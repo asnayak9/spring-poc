@@ -1,11 +1,13 @@
 package com.spoc.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,9 +39,9 @@ public class TableController {
 	
 	@RequestMapping(value="/getDynamicTableData", method=RequestMethod.POST)
 	@ResponseBody
-	public TableDetailsDto getDataTable(HttpServletRequest request, HttpServletResponse response, Model model){
+	public void getDataTable(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, JSONException{
 		System.out.println(" Get Data Table POST Controller ");
-		String[] columnNames = { "recId", "empId", "empName", "Salary" };
+		String[] columnNames = { "rec_id", "emp_id", "emp_name", "emp_salary" };
 		TableDetailsDto tableData = new TableDetailsDto();
 		int listDisplayAmount = 10;
 		int start = 0;
@@ -91,6 +93,16 @@ public class TableController {
 		tableData.setDirection(dir);
 		tableData.setInitial(start);
 		tableData = tableService.getEmployeeDetails(totalRecords,tableData);
-		return tableData;
+	//	return tableData;
+		
+		
+		JSONObject result = new JSONObject();
+		result.put("iTotalRecords", tableData.getTotalRecords());
+		result.put("iTotalDisplayRecords", tableData.getTotalDisplayRecords());
+		result.put("aaData", tableData.getArray());
+		response.setContentType("application/json");
+		response.setHeader("Cache-Control", "no-store");
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 }

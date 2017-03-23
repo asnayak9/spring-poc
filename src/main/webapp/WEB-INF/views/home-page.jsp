@@ -148,7 +148,7 @@
 <spring:url value="/resources/js/bootstrap.js" var="bootstrapJs"></spring:url>
 <script type="text/javascript" src="${bootstrapJs}"></script>
 <script type="text/javascript"  src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-<script src="http://datatables.net/release-datatables/extensions/ColVis/js/dataTables.colVis.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
 <script src="http://jquery-datatables-column-filter.googlecode.com/svn/trunk/media/js/jquery.dataTables.columnFilter.js"></script>
 <script type="text/javascript">
 	var contextPath = '<%=request.getContextPath()%>';
@@ -205,11 +205,9 @@
 				  .columnFilter({
 					  aoColumns: [ 
 						             { type: "number"},
+							         { type: "number" },
 							         { type: "text" },
-							         { type: "text" },
-							         { type: "text" },
-			                         { type: "text" },
-			                         { type: "text" },
+							         { type: "number" },
 								],
 							bUseColVis: true
 				   }).fnSetFilteringDelay();
