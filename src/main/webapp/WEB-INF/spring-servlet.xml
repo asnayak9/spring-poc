@@ -19,4 +19,5 @@
 	<property name="suffix" value=".jsp"/>
 </bean>
  <mvc:resources mapping="/resources/**" location="/resources/" />
+ <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>	
 </beans>

@@ -21,7 +21,6 @@ import com.spoc.service.UserService;
  * we will be sending two times salted hashed password from the client side and compare that password
  * with the salted hashed password stored in DB.We are using Bcrypt for the encryption which is 
  * widely referred in the spring documentation. 
- * @author nithin
  *
  */
 @Service("customAuthenticationProviderService")
@@ -42,7 +41,7 @@ public class CustomAuthenticationProviderService implements AuthenticationProvid
       if (user == null) {
         throw new BadCredentialsException("User not found");
       }
-      if (!user.isAccountNonLocked()) {
+      /*if (!user.isAccountNonLocked()) {
     	  throw new LockedException("User account is locked");
       }
       if (!user.isEnabled()) {
@@ -50,7 +49,7 @@ public class CustomAuthenticationProviderService implements AuthenticationProvid
       }
       if (!BCrypt.checkpw(user.getPassword(), password)) {
         throw new BadCredentialsException("Incorrect Password");
-      }
+      }*/
     }
     else {
       throw new BadCredentialsException("User not found");

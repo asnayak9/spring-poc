@@ -18,11 +18,13 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping( value={"/", "/login"}, method=RequestMethod.GET)
 	public String getLoginPage(Model model)
 	{		
+		System.out.println("LOGIN CONTROLLER ");
 		return "Login";
 	}
+	
 	
 	@RequestMapping(value="/save", method=RequestMethod.GET)
 	public void save(Model model)
@@ -36,7 +38,6 @@ public class LoginController {
 	{		
 		System.out.println(" user name "+userForm.getUserName());
 		System.out.println(" user password "+userForm.getPassword());
-		 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return "home-page";
 	}
 	
