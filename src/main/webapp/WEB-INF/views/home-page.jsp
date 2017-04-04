@@ -177,7 +177,7 @@
 
 	
 	var table;
-	/* jQuery(document).ready(function() {
+	jQuery(document).ready(function() {
 		table = $('#empTable').dataTable({
 			  	"bPaginate": true,
 			  	"order": [ 0, 'asc' ],
@@ -271,7 +271,7 @@
 	        //draw the 'current' page
 	        oSettings.oApi._fnDraw(oSettings);
 	    };
-	})(jQuery); */
+	})(jQuery); 
 </script>
 </body>
 </html>

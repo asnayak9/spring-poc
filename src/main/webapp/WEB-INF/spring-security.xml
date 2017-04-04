@@ -20,14 +20,12 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<!-- <intercept-url requires-channel="http" pattern="/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" /> -->
 		<!-- <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" /> -->
 		<!-- access denied page -->
-		<access-denied-handler error-page="/403" />
-		
-		   			<!-- <intercept-url pattern="/get-home" access="ROLE_ADMIN" />
-       		 		<form-login login-page="/login" default-target-url="/login"
-            			authentication-failure-url="/login?status=error" />
-        			<logout logout-success-url="/login" /> --> 
-		<!-- enable csrf protection -->
-		<!-- <csrf /> -->
+		<!-- <form-login 
+		    login-page="/login" 
+			authentication-success-handler-ref="loginSuccessHandler"
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID" invalidate-session="true" /> -->
 	</http>
 
 	<authentication-manager alias="authenticationManager">

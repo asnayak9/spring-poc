@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,14 +65,14 @@ public class TableDaoImpl implements TableDao{
 		int totalAfterSearch = totalRecords;
 		TableDetailsDto result = new TableDetailsDto();
 		JSONArray array = new JSONArray();
-		String searchSQL = "";
+		String searchSQL = null;
 		try {
 		/*Class.forName("com.mysql.jdbc.Driver");
 		String dbConnectionURL = "jdbc:mysql://localhost:3306/faruk?user=root&password=root";
 		Connection con = DriverManager.getConnection(dbConnectionURL);*/
 		Connection con=jdbcTemplate.getDataSource().getConnection();
 		String sql = "SELECT " + "rec_id, emp_id, emp_name, emp_salary "
-				+ "FROM " + "employee " + "WHERE ";
+				+ "FROM " + "employee ";
 
 		String globeSearch = "rec_id like '%" + tableData.getGlobalSearch() + "%'"
 				+ "or emp_id like '%" + tableData.getGlobalSearch() + "%'"
@@ -101,7 +102,10 @@ public class TableDaoImpl implements TableDao{
 		{
 			searchSQL=empSalarySearch;
 		}
-		sql += searchSQL;
+		
+		if(searchSQL!=null && !StringUtils.isBlank(searchSQL)){
+			sql += " WHERE "+searchSQL;
+		}
 		sql += " order by " + tableData.getColumnName() + " " + tableData.getDirection();
 		sql += " limit " + tableData.getInitial() + ", " + tableData.getRecordSize();
         System.out.println(sql);

@@ -85,6 +85,11 @@ public class UserServiceImpl implements UserService
 		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
 		return result;
 	}
+
+	@Override
+	public UserDto findByUserName(String username) {
+		return userDAO.findByUserName(username);
+	}
 	
 	
 
