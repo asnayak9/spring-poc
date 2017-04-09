@@ -32,9 +32,10 @@ public class CustomAuthenticationProviderService implements AuthenticationProvid
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     
-	  System.out.println("************************************************* hit");
+	System.out.println("************************************************* hit");
     String username = authentication.getName();
     String password = (String) authentication.getCredentials();
+    System.out.println("*******************Authenticate Method hit user name "+username+" password "+password);
     UserDetails user = null;
     if (!StringUtils.isBlank(username) && !StringUtils.isBlank(password)) {
       user =  userService.loadUserByUsername(username);

@@ -28,9 +28,11 @@
 			<img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img img-responsive img-circle center-block"/>
 			<h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
 		</div><!-- /.logo -->
-		<form:form action="${pageContext.request.contextPath}/get-home" modelAttribute="userForm"  method="POST">
+		
+		<c:url value="/j_spring_security_check" var="loginUrl" />
+		<form:form action="${loginUrl}" modelAttribute="userForm"  method="POST">
 			<div class="controls">
-				<input type="text" name="userName" placeholder="Username" class="form-control" />
+				<input type="text" name="username" placeholder="Username" class="form-control" />
 				 <br/>
 				<input type="password" name="password" placeholder="Password" class="form-control" />
 				<button type="submit" class="btn btn-default btn-block btn-custom">Login</button>

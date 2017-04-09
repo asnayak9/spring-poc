@@ -68,7 +68,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
       if ("ADMIN".equalsIgnoreCase(user.getRole())) {
           redirectStrategy.sendRedirect(request, response, "/");
       } else if("USER".equalsIgnoreCase(user.getRole())) {
-          redirectStrategy.sendRedirect(request, response, "/home-page");
+          redirectStrategy.sendRedirect(request, response, "/get-home");
       }  else {
           redirectStrategy.sendRedirect(request, response, "/");
       }

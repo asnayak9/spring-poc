@@ -29,6 +29,14 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 			username-parameter="username"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID" invalidate-session="true" /> 
+		<headers>
+			<cache-control/>
+			<content-type-options/>
+			<frame-options/>
+			<xss-protection/>
+			<!-- <hsts/> -->
+			<!-- <header/> -->
+		</headers>
 	</http>
 
 	<authentication-manager alias="authenticationManager">

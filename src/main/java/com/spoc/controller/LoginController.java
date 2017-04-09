@@ -33,11 +33,9 @@ public class LoginController {
 	}
 	
 	//Home Page View
-	@RequestMapping(value="/get-home", method=RequestMethod.POST)
-	public String getHomePage(@ModelAttribute("userForm")UserDto userForm, BindingResult result, Model model)
+	@RequestMapping(value="/get-home", method=RequestMethod.GET)
+	public String getHomePage(Model model)
 	{		
-		System.out.println(" user name "+userForm.getUserName());
-		System.out.println(" user password "+userForm.getPassword());
 		return "home-page";
 	}
 	
