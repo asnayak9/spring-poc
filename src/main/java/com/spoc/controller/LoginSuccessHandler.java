@@ -61,18 +61,17 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         session.setAttribute("userSession", userSession);
         session.setAttribute("username", user.getUserName());
         log.info("Setting UserSession parameters completed");
+        
+        if ("ADMIN".equalsIgnoreCase(user.getRole())) {
+            redirectStrategy.sendRedirect(request, response, "/get-home");
+        } else if("USER".equalsIgnoreCase(user.getRole())) {
+            redirectStrategy.sendRedirect(request, response, "/get-home");
+        }  else {
+            redirectStrategy.sendRedirect(request, response, "/");
+        }
       } else {
         log.info(" No valid session");
       }
-
-      if ("ADMIN".equalsIgnoreCase(user.getRole())) {
-          redirectStrategy.sendRedirect(request, response, "/");
-      } else if("USER".equalsIgnoreCase(user.getRole())) {
-          redirectStrategy.sendRedirect(request, response, "/get-home");
-      }  else {
-          redirectStrategy.sendRedirect(request, response, "/");
-      }
-
       log.info("updating user ");
     }
 

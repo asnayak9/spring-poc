@@ -32,9 +32,9 @@
 		<c:url value="/j_spring_security_check" var="loginUrl" />
 		<form:form action="${loginUrl}" modelAttribute="userForm"  method="POST">
 			<div class="controls">
-				<input type="text" name="username" placeholder="Username" class="form-control" />
+				<input type="text" autocomplete="off" name="username" placeholder="Username" class="form-control" />
 				 <br/>
-				<input type="password" name="password" placeholder="Password" class="form-control" />
+				<input type="password" autocomplete="off" name="password" placeholder="Password" class="form-control" />
 				<button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
 			</div><!-- /.controls -->
 		</form:form>

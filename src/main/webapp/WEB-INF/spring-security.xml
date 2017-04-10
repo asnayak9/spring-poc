@@ -37,6 +37,14 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 			<!-- <hsts/> -->
 			<!-- <header/> -->
 		</headers>
+		
+		<!-- Session Management -->
+		<!-- <session-management  session-authentication-error-url="/login?multiplesession" invalid-session-url="/login?sessiontimeout"  >
+			<concurrency-control expired-url="/login?multiplesession" session-registry-alias="sessionRegistry" />
+		</session-management> -->
+		
+		<!-- enable csrf protection -->
+		<!-- <csrf /> -->
 	</http>
 
 	<authentication-manager alias="authenticationManager">

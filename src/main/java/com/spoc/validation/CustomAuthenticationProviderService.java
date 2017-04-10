@@ -51,6 +51,9 @@ public class CustomAuthenticationProviderService implements AuthenticationProvid
       if (!BCrypt.checkpw(user.getPassword(), password)) {
         throw new BadCredentialsException("Incorrect Password");
       }*/
+      if(!password.equals(user.getPassword())){
+          throw new BadCredentialsException("Incorrect Password");
+      }
     }
     else {
       throw new BadCredentialsException("User not found");
